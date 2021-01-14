@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  turtlebot3
   turtlebot3_msgs
 )
 
@@ -107,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rtc_hht
-#  CATKIN_DEPENDS roscpp rospy std_msgs turtlebot3 turtlebot3_msgs
+#  CATKIN_DEPENDS roscpp rospy std_msgs turtlebot3_msgs
 #  DEPENDS system_lib
 )
 
