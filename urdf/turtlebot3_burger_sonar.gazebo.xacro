@@ -133,8 +133,8 @@
   </gazebo>
 
  <!-- Added for SR04 by OJ, SDF-Code in <gazebo>-Tag -->
-<gazebo reference="base_sonar_front"> <!-- same as link-->
- <sensor type="ray" name="sonar">
+<gazebo reference="base_sonar_front_left"> <!-- same as link-->
+ <sensor type="ray" name="sonar_left">
           <pose>0.25 0 0 0 0 0</pose>
           <update_rate>5</update_rate>
           <ray>
@@ -162,8 +162,45 @@
             <gaussianNoise>0.005</gaussianNoise>
             <alwaysOn>true</alwaysOn>
             <updateRate>5</updateRate>
-            <topicName>sonar</topicName>
-            <frameName>base_sonar_front</frameName>  <!-- old sonar_link -->-->
+            <topicName>sonar_left</topicName>
+            <frameName>base_sonar_front_left</frameName>  <!-- old sonar_link -->-->
+            <fov>0.5</fov>
+            <radiation>ultrasound</radiation>
+          </plugin>
+        </sensor>
+  </gazebo>
+
+<gazebo reference="base_sonar_front_right"> <!-- same as link-->
+ <sensor type="ray" name="sonar_right">
+          <pose>0.25 0 0 0 0 0</pose>
+          <update_rate>5</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>5</samples>
+                <resolution>1.0</resolution>
+                <min_angle>-0.25</min_angle>
+                <max_angle>0.25</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>5</samples>
+                <resolution>1</resolution>
+                <min_angle>-0.25</min_angle>
+                <max_angle>0.25</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.01</min>
+              <max>0.75</max>
+              <resolution>0.01</resolution>
+            </range>
+          </ray>
+          <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>5</updateRate>
+            <topicName>sonar_right</topicName>
+            <frameName>base_sonar_front_right</frameName>  <!-- old sonar_link -->-->
             <fov>0.5</fov>
             <radiation>ultrasound</radiation>
           </plugin>
