@@ -69,7 +69,7 @@ class TB3_sensor_to_sonar():
     def create_sonar_msgs(self):
         header_l = std_msgs.msg.Header()
         header_l.stamp = rospy.Time.now()
-        header_l.frame_id = 'sonar_left_link'
+        header_l.frame_id = 'base_sonar_left_link'
         self.sonar_left = Range()
         self.sonar_left.range = 0
         self.sonar_left.radiation_type = self.radiation_type
@@ -80,7 +80,7 @@ class TB3_sensor_to_sonar():
 
         header_r = std_msgs.msg.Header()
         header_r.stamp = rospy.Time.now()
-        header_r.frame_id = 'sonar_right_link'
+        header_r.frame_id = 'base_sonar_right_link'
         self.sonar_right = Range()
         self.sonar_right.range = 0
         self.sonar_right.radiation_type = self.radiation_type
