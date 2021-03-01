@@ -59,8 +59,8 @@ class TB3_sensor_to_sonar():
         return sonar
 
     def get_sonar(self, sensor_state):
-        self.sonar_left.range = self.validate_sonar(sensor_state.sonar)
-        self.sonar_right.range = self.validate_sonar(sensor_state.cliff)
+        self.sonar_left.range = self.validate_sonar(sensor_state.cliff)
+        self.sonar_right.range = self.validate_sonar(sensor_state.sonar)
         self.sonar_left.header.stamp = rospy.Time.now()
         self.sonar_right.header.stamp = rospy.Time.now()
         self.pub_sonar()
