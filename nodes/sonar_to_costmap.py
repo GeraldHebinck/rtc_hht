@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# edited by GH, 14.01.2021
-#
 # sonar_to_costmap.py
 # ################################################################################
 # edited WHS, OJ , 23.12.2020 #
@@ -9,10 +7,13 @@
 # using point_cloud - message
 #
 # edit
+# only Gazebo
 # copy content of turtlebot3.burger.gazebo_sonar.xacro
 #              to turtlebot3.burger.gazebo_sonar.xacro
 # copy content of turtlebot3.burger.urdf_sonar.xacro
 #              to turtlebot3.burger.urdf.xacro
+#
+# real Bot and Gazebo
 # edit costmap_common_params_burger.yaml
 #    observation_sources: scan sonar
 #    scan: ...
@@ -46,21 +47,29 @@ class Sonar_to_Point_Cloud():
                                          PointCloud,
                                          queue_size=10)
 
-        # receiving sonar
-        # check for "real Topic!"
-        self.sonar_sub = rospy.Subscriber('sonar',
-                                          Range,
-                                          self.get_sonar,
-                                          queue_size=10)
-
-        self.dist = 0.0
+        # receiving sonar_left and sonar_right
+        self.sonar_sub_left = rospy.Subscriber('sonar_left',
+                                               Range,
+                                               self.get_sonar_left,
+                                               queue_size=10)
+        self.sonar_sub_right = rospy.Subscriber('sonar_right',
+                                                Range,
+                                                self.get_sonar_right,
+                                                queue_size=10)
+        self.dist_left = 0.0
+        self.dist_right = 0.0
         self.rate = rospy.Rate(10)
         while not rospy.is_shutdown():
             self.rate.sleep()
 
-    def get_sonar(self, sensor_data):
+    def get_sonar_left(self, sensor_data_left):
         # rospy.loginfo(" Sonar Data Left received ")
-        self.dist = sensor_data.range
+        self.dist_left = sensor_data_left.range
+        self.cloud_build()
+
+    def get_sonar_right(self, sensor_data_right):
+        # rospy.loginfo(" Sonar Data Right received ")
+        self.dist_right = sensor_data_right.range
         self.cloud_build()
 
     def cloud_build(self):
@@ -77,19 +86,21 @@ class Sonar_to_Point_Cloud():
         cloud.header = header
 
         # Linke Seite
-        if(self.dist < 0.30 and self.dist > 0.05):
-            pl.x = self.dist + 0.05
-            pl.y = 0.05
+        if(self.dist_left < 0.95 and self.dist_left > 0.05):
+            pl.x = self.dist_left + 0.05
+            pl.y = 0.03
             pl.z = 0.0
             cloud.points.append(pl)
 
-            pm.x = self.dist + 0.05
+            pm.x = (self.dist_left + self.dist_right)/2 + 0.05
             pm.y = 0.0
             pm.z = 0.0
             cloud.points.append(pm)
 
-            pr.x = self.dist + 0.05
-            pr.y = -0.05
+        # Rechte Seite  punkt einfügen  (x,y,z)
+        if(self.dist_right < 0.95 and self.dist_right > 0.05):
+            pr.x = self.dist_right + 0.05
+            pr.y = -0.03
             pr.z = 0.0
             cloud.points.append(pr)
 
@@ -98,7 +109,7 @@ class Sonar_to_Point_Cloud():
 
 
 if __name__ == '__main__':
-    rospy.init_node('sonar_to_pointcloud', anonymous=True)
+    rospy.init_node('sonar_controller', anonymous=True)
     try:
         sonar = Sonar_to_Point_Cloud()
     except rospy.ROSInterruptException:
