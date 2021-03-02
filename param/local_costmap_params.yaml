@@ -15,7 +15,7 @@ local_costmap:
   plugins:
     - name: obstacle_laser_layer
       type: "costmap_2d::ObstacleLayer"
-    - name: obstacle_camera_layer
-      type: "costmap_2d::VoxelLayer"
+    - name: range_sensor_layer
+      type: "range_sensor_layer::RangeSensorLayer"
     - name: inflation_layer
       type: "costmap_2d::InflationLayer"

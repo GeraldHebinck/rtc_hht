@@ -23,13 +23,8 @@ obstacle_laser_layer:
     marking: true
     clearing: true
 
-obstacle_cloud_layer:
-  obstacle_range: 3.0
-  raytrace_range: 3.5
-  observation_sources: sonar
-  sonar:
-    sensor_frame: base_link
-    data_type: PointCloud
-    topic: sonar/point_cloud
-    marking: true
-    clearing: true
+range_sensor_layer:
+  clear_threshold:    0.46
+  mark_threshold:     0.98
+  clear_on_max_reading: true
+  topics: ['sonar_left', 'sonar_right']
