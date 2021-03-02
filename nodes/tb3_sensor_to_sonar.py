@@ -17,7 +17,7 @@ from math import inf
 class TB3_sensor_to_sonar():
 
     radiation_type = 0
-    field_of_view = 0.5
+    field_of_view = 0.25
     min_range = 0.05
     max_range = 0.99
 
