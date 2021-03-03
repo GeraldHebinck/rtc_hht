@@ -13,6 +13,9 @@ from turtlebot3_msgs.msg import SensorState
 
 
 class SensorState_test():
+
+    value = 0
+
     def __init__(self):
         self.rate = rospy.Rate(10)
 
@@ -27,13 +30,16 @@ class SensorState_test():
         pass
 
     def pub_msg(self):
+        self.create_msg()
         self.sensorstate_pub.publish(self.sensorstate_msg)
         pass
 
     def create_msg(self):
         self.sensorstate_msg = SensorState()
         sonar = std_msgs.msg.Float32()
-        sonar = 10
+        sonar = self.value % 10
+        print(sonar)
+        self. value = self.value + 1
         self.sensorstate_msg.sonar = sonar
         pass
 
