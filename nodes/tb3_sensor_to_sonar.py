@@ -17,9 +17,9 @@ from math import inf
 class TB3_sensor_to_sonar():
 
     radiation_type = 0
-    field_of_view = 0.25
+    field_of_view = 0.33
     min_range = 0.05
-    max_range = 0.5
+    max_range = 0.6
 
     def __init__(self):
         self.rate = rospy.Rate(50)
@@ -53,7 +53,7 @@ class TB3_sensor_to_sonar():
         elif sonar < (self.min_range*100):
             sonar = self.min_range
         elif sonar > (self.max_range*100):
-            sonar = inf
+            sonar = self.max_range
         else:
             sonar = sonar / 100
         return sonar
