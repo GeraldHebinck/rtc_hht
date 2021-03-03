@@ -8,9 +8,9 @@ TebLocalPlannerROS:
 
   acc_lim_x: 0.2
   acc_lim_theta: 0.2
-  max_vel_x: 0.22 #from manual
+  max_vel_x: 0.15 #from manual
   max_vel_x_backwards: 0.11
-  max_vel_theta: 2.0 #from manual (freaking fast?!)
+  max_vel_theta: 1.0 #from manual (freaking fast?!)
   # only car-like
   min_turning_radius: 0.0
   wheelbase: 0.0 # not used, is differential
@@ -56,8 +56,8 @@ TebLocalPlannerROS:
   legacy_obstacle_association: false
   obstacle_association_force_inclusion_factor: 5 # the obstacles that will be taken into account are those closer than min_obstacle_dist*factor, if legacy is false
   obstacle_association_cutoff_factor: 10.0 # the obstacles that are further than min_obstacle_dist * factor will not be taken into account, if legacy is false
-  costmap_converter_plugin: "" #costmap_converter::CostmapToPolygonsDBSMCCH
-  costmap_converter_spin_thread: false
+  costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH"
+  costmap_converter_spin_thread: true
   costmap_converter_rate: 5
   
   # Optimization
@@ -85,7 +85,7 @@ TebLocalPlannerROS:
 
   enable_homotopy_class_planning: false # currently not used
   enable_multithreading: True
-  max_number_classes: 4
+  max_number_classes: 2
   selection_cost_hysteresis: 1.0
   selection_obst_cost_scale: 100.0
   selection_viapoint_cost_scale: 1.0
