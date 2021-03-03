@@ -1,7 +1,7 @@
 
 #---standard pioneer footprint---
 #---(in meters)---
-robot_radius: 0.17
+robot_radius: 0.1
 footprint_padding: 0.00
 
 transform_tolerance: 0.2
@@ -13,7 +13,7 @@ obstacle_layer:
  enabled: true
  obstacle_range: 3.0
  raytrace_range: 4.0
- inflation_radius: 0.2
+ inflation_radius: 0.1
  track_unknown_space: true
  combination_method: 1
 
