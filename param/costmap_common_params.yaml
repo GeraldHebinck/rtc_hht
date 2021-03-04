@@ -24,7 +24,7 @@ obstacle_layer:
 inflation_layer:
   enabled:              true
   cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
-  inflation_radius:     0.033  # max. distance from an obstacle at which costs are incurred for planning paths.
+  inflation_radius:     0.1  # max. distance from an obstacle at which costs are incurred for planning paths.
 
 static_layer:
   enabled:              true
@@ -32,6 +32,6 @@ static_layer:
 
 range_sensor_layer:
   clear_threshold:    0.46
-  mark_threshold:     0.98
+  mark_threshold:     0.96
   clear_on_max_reading: true
-  topics: ['/sonar_left', '/sonar_right']
+  topics: ['/sonar_left', '/sonar_right', '/sonar_middle']

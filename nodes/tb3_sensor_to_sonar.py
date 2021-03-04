@@ -20,14 +20,14 @@ class TB3_sensor_to_sonar():
     # Parameter
     radiation_type = 0
     field_of_view = 0.33
-    min_range = 0.05
-    max_range = 0.6
+    min_range = 0.01
+    max_range = 0.5
     sonar_l_array = []
     sonar_l_index = 0
     sonar_r_array = []
     sonar_r_index = 0
-    sonar_max_index = 2
-    sonar_median_index = 1
+    sonar_max_index = 6
+    sonar_median_index = 3
 
     # Init Funktion. Erstellt Publisher und Subscriber
     # Erstellt die Listen fuer den Filter und die ROS Nachrichten
@@ -110,10 +110,8 @@ class TB3_sensor_to_sonar():
         self.sonar_right.range, self.sonar_r_index = retval
         print(retval)
 
-        checkval = self.sonar_left.range + self.sonar_right.range
-
-        if checkval < (self.max_range * 2):
-            self.sonar_middle.range = checkval / 2
+        if self.sonar_left.range < self.max_range and self.sonar_right.range < self.max_range:
+            self.sonar_middle.range = (self.sonar_left.range + self.sonar_right.range)/2
         else:
             self.sonar_middle.range = self.max_range + 0.02
 

@@ -168,7 +168,7 @@
  -->
   <joint name="sonar_front_joint_left" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 0 0.2" xyz="0.035 0.044 0.078" />
+    <origin rpy="0 0 0" xyz="0.035 0.044 0.078" />
     <parent link="base_link"/>
     <child link="base_sonar_front_left"/>
   </joint>
@@ -195,7 +195,7 @@
 
   <joint name="sonar_front_joint_right" type="fixed">
     <axis xyz="0 1 0" />
-    <origin rpy="0 0 -0.2" xyz="0.035 -0.044 0.078" />
+    <origin rpy="0 0 0" xyz="0.035 -0.044 0.078" />
     <parent link="base_link"/>
     <child link="base_sonar_front_right"/>
   </joint>
