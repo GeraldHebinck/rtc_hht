@@ -84,11 +84,11 @@ class TB3_sensor_to_sonar():
     # Grenzen einen angepassten Wert zurueck
     def validate_sonar(self, sonar):
         if sonar == 0:
-            sonar = inf
+            sonar = self.max_range + 0.02
         elif sonar < (self.min_range*100):
             sonar = self.min_range
         elif sonar > (self.max_range*100):
-            sonar = self.max_range
+            sonar = self.max_range + 0.02
         else:
             sonar = sonar / 100
         return sonar
