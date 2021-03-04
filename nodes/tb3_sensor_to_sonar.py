@@ -68,8 +68,17 @@ class TB3_sensor_to_sonar():
     # sowie den inkremetierten Zeiger zurueck.
     def median(self, sonar_array, sonar_index, sonar_value):
         sonar_array[sonar_index] = sonar_value
-        print(f"Rolling Window\n{sonar_arra# inkremetiert den Zeiger auf die Liste. _index], sonar_index
+        print(f"Rolling Window:\n{sonar_array}")
+        if sonar_index >= self.sonar_max_index:
+            sonar_index = 0
+        else:
+            sonar_index = sonar_index + 1
         pass
+        sort_array = sonar_array.copy()
+        sort_array.sort()
+        print(f"Sorted list:\n{sort_array}")
+        median = sort_array[self.sonar_median_index]
+        return median, sonar_index
 
     # Funktion prueft den Sensorwert und gibt entsprechend der
     # Grenzen einen angepassten Wert zurueck
