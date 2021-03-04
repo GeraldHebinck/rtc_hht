@@ -15,7 +15,7 @@
   <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
 
   <!-- move_base -->
-  <include file="$(find rtc_hht)/launch/robot_diff_drive_in_stage_costmap_conversion.launch"/>
+  <include file="$(find rtc_hht)/launch/move_base.launch"/>
     
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
