@@ -1,3 +1,5 @@
+<!-- based on turtlebot3_house from pkg turtlebot3_gazebo -->
+
 <launch>
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="x_pos" default="-3.0"/>

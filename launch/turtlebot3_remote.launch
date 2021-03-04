@@ -6,4 +6,7 @@
     <param name="publish_frequency" type="double" value="50.0" />
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
   </node>
+
+  <node pkg="rtc_hht" type="tb3_sensor_to_sonar.py" name="tb3_sensor_to_sonar" />
+
 </launch>
