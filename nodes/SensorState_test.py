@@ -36,11 +36,14 @@ class SensorState_test():
 
     def create_msg(self):
         self.sensorstate_msg = SensorState()
+        cliff = std_msgs.msg.Float32()
+        cliff = self.value % 100
         sonar = std_msgs.msg.Float32()
-        sonar = self.value % 10
+        sonar = self.value % 100
         print(sonar)
-        self. value = self.value + 1
+        self. value = self.value + 10
         self.sensorstate_msg.sonar = sonar
+        self.sensorstate_msg.cliff = cliff
         pass
 
 

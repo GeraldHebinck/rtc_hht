@@ -40,6 +40,9 @@ class TB3_sensor_to_sonar():
         self.sonar_right_pub = rospy.Publisher('sonar_right',
                                                Range,
                                                queue_size=10)
+        self.sonar_middle_pub = rospy.Publisher('sonar_middle',
+                                              Range,
+                                              queue_size=10)
 
         self.sensor_sub = rospy.Subscriber('sensor_state',
                                            SensorState,
@@ -61,6 +64,7 @@ class TB3_sensor_to_sonar():
     def pub_sonar(self):
         self.sonar_left_pub.publish(self.sonar_left)
         self.sonar_right_pub.publish(self.sonar_right)
+        self.sonar_middle_pub.publish(self.sonar_middle)
         pass
 
     # Median Funktion. Fuegt einen Wert der Liste hinzu.
@@ -106,8 +110,16 @@ class TB3_sensor_to_sonar():
         self.sonar_right.range, self.sonar_r_index = retval
         print(retval)
 
+        checkval = self.sonar_left.range + self.sonar_right.range
+
+        if checkval < (self.max_range * 2):
+            self.sonar_middle.range = checkval / 2
+        else:
+            self.sonar_middle.range = self.max_range + 0.02
+
         self.sonar_left.header.stamp = rospy.Time.now()
         self.sonar_right.header.stamp = rospy.Time.now()
+        self.sonar_middle.header.stamp = rospy.Time.now()
         self.pub_sonar()
         pass
 
@@ -134,6 +146,17 @@ class TB3_sensor_to_sonar():
         self.sonar_right.min_range = self.min_range
         self.sonar_right.max_range = self.max_range
         self.sonar_right.header = header_r
+
+        header_m = std_msgs.msg.Header()
+        header_m.stamp = rospy.Time.now()
+        header_m.frame_id = 'base_sonar_front_middle'
+        self.sonar_middle = Range()
+        self.sonar_middle.range = 0
+        self.sonar_middle.radiation_type = self.radiation_type
+        self.sonar_middle.field_of_view = self.field_of_view
+        self.sonar_middle.min_range = self.min_range
+        self.sonar_middle.max_range = self.max_range
+        self.sonar_middle.header = header_m
         pass
 
 
