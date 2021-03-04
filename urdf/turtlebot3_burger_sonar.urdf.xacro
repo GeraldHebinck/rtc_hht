@@ -168,7 +168,7 @@
  -->
     <joint name="sonar_front_joint_left" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 0" xyz="0.04 0.06 0.06" />
+        <origin rpy="0 0 0.2" xyz="0.065 0.044 0.078" />
         <parent link="base_link"/>
         <child link="base_sonar_front_left"/>
     </joint>
@@ -176,12 +176,12 @@
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <box size="0.01 0.01 0.01"/>
+            <box size="0.04 0.01 0.01"/>
         </geometry>
         </collision>    <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <box size="0.01 0.01 0.01"/>
+            <box size="0.04 0.01 0.01"/>
         </geometry>
         </visual>    <inertial>
         <mass value="1e-5" />
@@ -193,7 +193,7 @@
 
  <joint name="sonar_front_joint_right" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 0" xyz="0.04 -0.06 0.06" />
+        <origin rpy="0 0 -0.2" xyz="0.065 -0.044 0.078" />
         <parent link="base_link"/>
         <child link="base_sonar_front_right"/>
     </joint>
@@ -201,12 +201,12 @@
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <box size="0.01 0.01 0.01"/>
+            <box size="0.04 0.01 0.01"/>
         </geometry>
         </collision>    <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-            <box size="0.01 0.01 0.01"/>
+            <box size="0.04 0.01 0.01"/>
         </geometry>
         </visual>    <inertial>
         <mass value="1e-5" />
